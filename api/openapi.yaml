@@ -1,0 +1,1299 @@
+openapi: 3.1.0
+info:
+  title: FastAPI
+  version: 0.1.0
+servers:
+- url: /
+paths:
+  /api/v1/order:
+    post:
+      operationId: create_order_endpoint_api_v1_order_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrder'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Order Endpoint
+      tags:
+      - Order
+  /api/v1/orders:
+    get:
+      operationId: get_orders_endpoint_api_v1_orders_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrderResultResponse'
+                type: array
+          description: Successful Response
+      summary: Get Orders Endpoint
+      tags:
+      - Order
+  /api/v1/order/{ord_no}:
+    delete:
+      operationId: delete_order_endpoint_api_v1_order__ord_no__delete
+      parameters:
+      - explode: false
+        in: path
+        name: ord_no
+        required: true
+        schema:
+          title: Ord No
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Order Endpoint
+      tags:
+      - Order
+  /api/v1/market_status:
+    get:
+      operationId: get_market_status_endpoint_api_v1_market_status_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketStatusResponse'
+          description: Successful Response
+      summary: Get Market Status Endpoint
+      tags:
+      - Order
+  /api/v1/intraday/quote:
+    get:
+      operationId: get_quote_api_v1_intraday_quote_get
+      parameters:
+      - explode: true
+        in: query
+        name: symbol
+        required: true
+        schema:
+          title: Symbol
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          default: EQUITY
+          enum:
+          - oddlot
+          - EQUITY
+          title: Type
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Quote
+      tags:
+      - Market
+  /api/v1/historical/candles:
+    get:
+      operationId: get_candles_api_v1_historical_candles_get
+      parameters:
+      - explode: true
+        in: query
+        name: symbol
+        required: true
+        schema:
+          title: Symbol
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: from_date
+        required: true
+        schema:
+          title: From Date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: to_date
+        required: true
+        schema:
+          title: To Date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: resolution
+        required: false
+        schema:
+          default: D
+          title: Resolution
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KLinesResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Candles
+      tags:
+      - Market
+  /api/v1/settlements:
+    get:
+      operationId: get_settlements_endpoint_api_v1_settlements_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SettlementResponse'
+                type: array
+          description: Successful Response
+      summary: Get Settlements Endpoint
+      tags:
+      - Wallet
+  /api/v1/balance:
+    get:
+      operationId: get_balance_endpoint_api_v1_balance_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceResponse'
+          description: Successful Response
+      summary: Get Balance Endpoint
+      tags:
+      - Wallet
+  /api/v1/inventories:
+    get:
+      operationId: get_inventories_endpoint_api_v1_inventories_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InventoryResponse'
+                type: array
+          description: Successful Response
+      summary: Get Inventories Endpoint
+      tags:
+      - Wallet
+  /api/v1/ping:
+    get:
+      operationId: ping_api_v1_ping_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Ping
+      tags:
+      - System
+components:
+  schemas:
+    APCode:
+      enum:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      title: APCode
+      type: string
+      x-enum-varnames:
+      - Common
+      - AfterMarket
+      - Odd
+      - Emg
+      - IntradayOdd
+    Action:
+      enum:
+      - B
+      - S
+      title: Action
+      type: string
+      x-enum-varnames:
+      - Buy
+      - Sell
+    BSFlag:
+      enum:
+      - F
+      - I
+      - R
+      title: BSFlag
+      type: string
+      x-enum-varnames:
+      - FOK
+      - IOC
+      - ROD
+    BalanceResponse:
+      example:
+        stock_pre_save_amount: 1
+        available_balance: 0
+        exchange_balance: 6
+      properties:
+        available_balance:
+          title: Available Balance
+          type: integer
+        exchange_balance:
+          title: Exchange Balance
+          type: integer
+        stock_pre_save_amount:
+          title: Stock Pre Save Amount
+          type: integer
+      required:
+      - available_balance
+      - exchange_balance
+      - stock_pre_save_amount
+      title: BalanceResponse
+    BidAsk:
+      example:
+        size: 1
+        price: 7.457744773683766
+      properties:
+        price:
+          title: Price
+          type: number
+        size:
+          title: Size
+          type: integer
+      required:
+      - price
+      - size
+      title: BidAsk
+    CancelResponse:
+      example:
+        ord_time: ord_time
+        ord_date: ord_date
+        ret_msg: ret_msg
+        ret_code: ret_code
+      properties:
+        ret_code:
+          title: Ret Code
+          type: string
+        ret_msg:
+          title: Ret Msg
+          type: string
+        ord_date:
+          title: Ord Date
+          type: string
+        ord_time:
+          title: Ord Time
+          type: string
+      required:
+      - ord_date
+      - ord_time
+      - ret_code
+      - ret_msg
+      title: CancelResponse
+    CreateOrder:
+      example:
+        bs_flag: F
+        price_flag: "0"
+        trade: "0"
+        stock_no: stock_no
+        quantity: 0
+        price: 6.027456183070403
+        ap_code: "1"
+        buy_sell: B
+      properties:
+        buy_sell:
+          $ref: '#/components/schemas/Action'
+        ap_code:
+          $ref: '#/components/schemas/APCode'
+        price_flag:
+          $ref: '#/components/schemas/PriceFlag'
+        bs_flag:
+          $ref: '#/components/schemas/BSFlag'
+        trade:
+          $ref: '#/components/schemas/Trade'
+        stock_no:
+          title: Stock No
+          type: string
+        quantity:
+          title: Quantity
+          type: integer
+        price:
+          title: Price
+          type: number
+      required:
+      - ap_code
+      - bs_flag
+      - buy_sell
+      - price
+      - price_flag
+      - quantity
+      - stock_no
+      - trade
+      title: CreateOrder
+    HTTPValidationError:
+      example:
+        detail:
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+      title: HTTPValidationError
+    InventoryDetail:
+      example:
+        ord_no: ord_no
+        cost_r: 7.457744773683766
+        t_date: t_date
+        tax_g: 1.284659006116532
+        fee: 1.1730742509559433
+        qty_r: 3
+        make_a_per: 5.025004791520295
+        value_mkt: 6.778324963048013
+        value_now: 6.878052220127876
+        tax: 6.965117697638846
+        pay_n: 9.965781217890562
+        qty_h: 6
+        trade: 2
+        user_def: user_def
+        qty_c: 9
+        price: 9.369310271410669
+        price_evn: 6.683562403749608
+        qty: 8
+        make_a: 4.965218492984954
+        t_time: t_time
+        buy_sell: buy_sell
+      properties:
+        buy_sell:
+          title: Buy Sell
+          type: string
+        cost_r:
+          type: number
+          nullable: true
+        fee:
+          title: Fee
+          type: number
+        make_a:
+          title: Make A
+          type: number
+        make_a_per:
+          title: Make A Per
+          type: number
+        ord_no:
+          title: Ord No
+          type: string
+        pay_n:
+          title: Pay N
+          type: number
+        price:
+          title: Price
+          type: number
+        price_evn:
+          title: Price Evn
+          type: number
+        qty:
+          title: Qty
+          type: integer
+        qty_c:
+          type: integer
+          nullable: true
+        qty_h:
+          type: integer
+          nullable: true
+        qty_r:
+          type: integer
+          nullable: true
+        t_date:
+          title: T Date
+          type: string
+        t_time:
+          type: string
+          nullable: true
+        tax:
+          type: number
+          nullable: true
+        tax_g:
+          type: number
+          nullable: true
+        trade:
+          type: integer
+          nullable: true
+        value_mkt:
+          title: Value Mkt
+          type: number
+        value_now:
+          title: Value Now
+          type: number
+        user_def:
+          type: string
+          nullable: true
+      required:
+      - buy_sell
+      - fee
+      - make_a
+      - make_a_per
+      - ord_no
+      - pay_n
+      - price
+      - price_evn
+      - qty
+      - t_date
+      - value_mkt
+      - value_now
+      title: InventoryDetail
+    InventoryResponse:
+      example:
+        qty_s: 1
+        stk_no: stk_no
+        make_a_per: 1.4658129805029452
+        s_type: s_type
+        value_mkt: 6.704019297950036
+        value_now: 3.353193347011243
+        stk_dats:
+        - ord_no: ord_no
+          cost_r: 7.457744773683766
+          t_date: t_date
+          tax_g: 1.284659006116532
+          fee: 1.1730742509559433
+          qty_r: 3
+          make_a_per: 5.025004791520295
+          value_mkt: 6.778324963048013
+          value_now: 6.878052220127876
+          tax: 6.965117697638846
+          pay_n: 9.965781217890562
+          qty_h: 6
+          trade: 2
+          user_def: user_def
+          qty_c: 9
+          price: 9.369310271410669
+          price_evn: 6.683562403749608
+          qty: 8
+          make_a: 4.965218492984954
+          t_time: t_time
+          buy_sell: buy_sell
+        - ord_no: ord_no
+          cost_r: 7.457744773683766
+          t_date: t_date
+          tax_g: 1.284659006116532
+          fee: 1.1730742509559433
+          qty_r: 3
+          make_a_per: 5.025004791520295
+          value_mkt: 6.778324963048013
+          value_now: 6.878052220127876
+          tax: 6.965117697638846
+          pay_n: 9.965781217890562
+          qty_h: 6
+          trade: 2
+          user_def: user_def
+          qty_c: 9
+          price: 9.369310271410669
+          price_evn: 6.683562403749608
+          qty: 8
+          make_a: 4.965218492984954
+          t_time: t_time
+          buy_sell: buy_sell
+        price_avg: 5.637376656633329
+        cost_sum: 6.027456183070403
+        qty_l: 1
+        qty_sm: 1
+        cost_qty: 0.8008281904610115
+        price_mkt: 7.061401241503109
+        price_now: 9.301444243932576
+        trade: 5
+        qty_c: 7
+        price_qty_sum: 3.616076749251911
+        price_evn: 2.3021358869347655
+        qty_b: 2
+        ap_code: ap_code
+        make_a_sum: 5.962133916683182
+        qty_bm: 4
+        stk_na: stk_na
+        rec_va_sum: 6.84685269835264
+      properties:
+        ap_code:
+          type: string
+          nullable: true
+        cost_qty:
+          title: Cost Qty
+          type: number
+        cost_sum:
+          title: Cost Sum
+          type: number
+        make_a_per:
+          title: Make A Per
+          type: number
+        make_a_sum:
+          title: Make A Sum
+          type: number
+        price_avg:
+          title: Price Avg
+          type: number
+        price_evn:
+          title: Price Evn
+          type: number
+        price_mkt:
+          title: Price Mkt
+          type: number
+        price_now:
+          title: Price Now
+          type: number
+        price_qty_sum:
+          title: Price Qty Sum
+          type: number
+        qty_b:
+          title: Qty B
+          type: integer
+        qty_bm:
+          title: Qty Bm
+          type: integer
+        qty_c:
+          title: Qty C
+          type: integer
+        qty_l:
+          title: Qty L
+          type: integer
+        qty_s:
+          title: Qty S
+          type: integer
+        qty_sm:
+          title: Qty Sm
+          type: integer
+        rec_va_sum:
+          title: Rec Va Sum
+          type: number
+        s_type:
+          title: S Type
+          type: string
+        stk_dats:
+          items:
+            $ref: '#/components/schemas/InventoryDetail'
+          type: array
+        stk_na:
+          title: Stk Na
+          type: string
+        stk_no:
+          title: Stk No
+          type: string
+        trade:
+          type: integer
+          nullable: true
+        value_mkt:
+          title: Value Mkt
+          type: number
+        value_now:
+          title: Value Now
+          type: number
+      required:
+      - cost_qty
+      - cost_sum
+      - make_a_per
+      - make_a_sum
+      - price_avg
+      - price_evn
+      - price_mkt
+      - price_now
+      - price_qty_sum
+      - qty_b
+      - qty_bm
+      - qty_c
+      - qty_l
+      - qty_s
+      - qty_sm
+      - rec_va_sum
+      - s_type
+      - stk_dats
+      - stk_na
+      - stk_no
+      - value_mkt
+      - value_now
+      title: InventoryResponse
+    KLine:
+      example:
+        date: 2000-01-23
+        volume: 5
+        high: 6.027456183070403
+        low: 1.4658129805029452
+        close: 5.962133916683182
+        open: 0.8008281904610115
+      properties:
+        date:
+          format: date
+          title: Date
+          type: string
+        open:
+          title: Open
+          type: number
+        high:
+          title: High
+          type: number
+        low:
+          title: Low
+          type: number
+        close:
+          title: Close
+          type: number
+        volume:
+          title: Volume
+          type: integer
+      required:
+      - close
+      - date
+      - high
+      - low
+      - open
+      - volume
+      title: KLine
+    KLinesResponse:
+      example:
+        market: market
+        symbol: symbol
+        timeframe: timeframe
+        data:
+        - date: 2000-01-23
+          volume: 5
+          high: 6.027456183070403
+          low: 1.4658129805029452
+          close: 5.962133916683182
+          open: 0.8008281904610115
+        - date: 2000-01-23
+          volume: 5
+          high: 6.027456183070403
+          low: 1.4658129805029452
+          close: 5.962133916683182
+          open: 0.8008281904610115
+        exchange: exchange
+        type: type
+      properties:
+        symbol:
+          title: Symbol
+          type: string
+        type:
+          title: Type
+          type: string
+        exchange:
+          title: Exchange
+          type: string
+        market:
+          title: Market
+          type: string
+        timeframe:
+          title: Timeframe
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/KLine'
+          type: array
+      required:
+      - data
+      - exchange
+      - market
+      - symbol
+      - timeframe
+      - type
+      title: KLinesResponse
+    LastTrade:
+      example:
+        size: 6
+        serial: 2
+        price: 3.5571952270680973
+        ask: 6.438423552598547
+        time: 1
+        bid: 9.018348186070783
+      properties:
+        bid:
+          title: Bid
+          type: number
+        ask:
+          title: Ask
+          type: number
+        price:
+          title: Price
+          type: number
+        size:
+          title: Size
+          type: integer
+        time:
+          title: Time
+          type: integer
+        serial:
+          title: Serial
+          type: integer
+      required:
+      - ask
+      - bid
+      - price
+      - serial
+      - size
+      - time
+      title: LastTrade
+    LastTrial:
+      example:
+        size: 6
+        serial: 3
+        price: 5.944895607614016
+        ask: 6.878052220127876
+        time: 3
+        bid: 6.778324963048013
+      properties:
+        bid:
+          title: Bid
+          type: number
+        ask:
+          title: Ask
+          type: number
+        price:
+          title: Price
+          type: number
+        size:
+          title: Size
+          type: integer
+        time:
+          title: Time
+          type: integer
+        serial:
+          title: Serial
+          type: integer
+      required:
+      - ask
+      - bid
+      - price
+      - serial
+      - size
+      - time
+      title: LastTrial
+    MarketStatusResponse:
+      example:
+        next_trading_day: next_trading_day
+        last_trading_day: last_trading_day
+        is_trading_day: true
+      properties:
+        is_trading_day:
+          title: Is Trading Day
+          type: boolean
+        last_trading_day:
+          title: Last Trading Day
+          type: string
+        next_trading_day:
+          title: Next Trading Day
+          type: string
+      required:
+      - is_trading_day
+      - last_trading_day
+      - next_trading_day
+      title: MarketStatusResponse
+    OrderResponse:
+      example:
+        ord_no: ord_no
+        work_date: work_date
+        ord_time: ord_time
+        ord_type: ord_type
+        ord_date: ord_date
+        ret_msg: ret_msg
+        ret_code: ret_code
+      properties:
+        ord_date:
+          title: Ord Date
+          type: string
+        ord_time:
+          title: Ord Time
+          type: string
+        ord_type:
+          title: Ord Type
+          type: string
+        ord_no:
+          title: Ord No
+          type: string
+        ret_code:
+          title: Ret Code
+          type: string
+        ret_msg:
+          title: Ret Msg
+          type: string
+        work_date:
+          title: Work Date
+          type: string
+      required:
+      - ord_date
+      - ord_no
+      - ord_time
+      - ord_type
+      - ret_code
+      - ret_msg
+      - work_date
+      title: OrderResponse
+    OrderResultResponse:
+      example:
+        cel_qty: 6.027456183070403
+        ord_no: ord_no
+        price_flag: "0"
+        stock_no: stock_no
+        work_date: work_date
+        celable: celable
+        err_code: err_code
+        avg_price: 0.8008281904610115
+        mat_qty: 5.962133916683182
+        cel_qty_share: 1
+        org_qty: 7.061401241503109
+        bs_flag: F
+        od_price: 2.3021358869347655
+        trade: "0"
+        user_def: ""
+        ord_status: ord_status
+        ord_time: ord_time
+        err_msg: err_msg
+        ap_code: "1"
+        org_qty_share: 9
+        mat_qty_share: 5
+        ord_date: ord_date
+        pre_ord_no: pre_ord_no
+        buy_sell: B
+      properties:
+        ap_code:
+          $ref: '#/components/schemas/APCode'
+        avg_price:
+          title: Avg Price
+          type: number
+        bs_flag:
+          $ref: '#/components/schemas/BSFlag'
+        buy_sell:
+          $ref: '#/components/schemas/Action'
+        cel_qty:
+          title: Cel Qty
+          type: number
+        cel_qty_share:
+          title: Cel Qty Share
+          type: integer
+        celable:
+          title: Celable
+          type: string
+        err_code:
+          title: Err Code
+          type: string
+        err_msg:
+          title: Err Msg
+          type: string
+        mat_qty:
+          title: Mat Qty
+          type: number
+        mat_qty_share:
+          title: Mat Qty Share
+          type: integer
+        od_price:
+          title: Od Price
+          type: number
+        ord_date:
+          title: Ord Date
+          type: string
+        ord_no:
+          title: Ord No
+          type: string
+        ord_status:
+          title: Ord Status
+          type: string
+        ord_time:
+          title: Ord Time
+          type: string
+        org_qty:
+          title: Org Qty
+          type: number
+        org_qty_share:
+          title: Org Qty Share
+          type: integer
+        pre_ord_no:
+          title: Pre Ord No
+          type: string
+        price_flag:
+          $ref: '#/components/schemas/PriceFlag'
+        stock_no:
+          title: Stock No
+          type: string
+        trade:
+          $ref: '#/components/schemas/Trade'
+        work_date:
+          title: Work Date
+          type: string
+        user_def:
+          default: ""
+          title: User Def
+          type: string
+      required:
+      - ap_code
+      - avg_price
+      - bs_flag
+      - buy_sell
+      - cel_qty
+      - cel_qty_share
+      - celable
+      - err_code
+      - err_msg
+      - mat_qty
+      - mat_qty_share
+      - od_price
+      - ord_date
+      - ord_no
+      - ord_status
+      - ord_time
+      - org_qty
+      - org_qty_share
+      - pre_ord_no
+      - price_flag
+      - stock_no
+      - trade
+      - work_date
+      title: OrderResultResponse
+    PriceFlag:
+      enum:
+      - "0"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      title: PriceFlag
+      type: string
+      x-enum-varnames:
+      - Limit
+      - Flat
+      - LimitDown
+      - LimitUp
+      - Market
+    QuoteResponse:
+      example:
+        date: 2000-01-23
+        symbol: symbol
+        highTime: 2
+        lastTrial:
+          size: 6
+          serial: 3
+          price: 5.944895607614016
+          ask: 6.878052220127876
+          time: 3
+          bid: 6.778324963048013
+        isDelayedOpen: true
+        avgPrice: 4.145608029883936
+        openPrice: 1.4658129805029452
+        lastTrade:
+          size: 6
+          serial: 2
+          price: 3.5571952270680973
+          ask: 6.438423552598547
+          time: 1
+          bid: 9.018348186070783
+        type: type
+        isTrial: true
+        previousClose: 6.027456183070403
+        lastUpdated: 7
+        referencePrice: 0.8008281904610115
+        amplitude: 1.0246457001441578
+        total:
+          tradeVolume: 5
+          tradeVolumeAtAsk: 9
+          tradeVolumeAtBid: 9
+          tradeValue: 4
+          time: 8
+          transaction: 6
+        lowPrice: 7.061401241503109
+        highPrice: 5.637376656633329
+        closeTime: 2
+        changePercent: 1.2315135367772556
+        openTime: 5
+        isClose: true
+        change: 7.386281948385884
+        market: market
+        isDelayedClose: true
+        isOpen: true
+        lastSize: 6
+        serial: 0
+        asks:
+        - size: 1
+          price: 7.457744773683766
+        - size: 1
+          price: 7.457744773683766
+        name: name
+        bids:
+        - size: 1
+          price: 7.457744773683766
+        - size: 1
+          price: 7.457744773683766
+        exchange: exchange
+        closePrice: 3.616076749251911
+        lowTime: 9
+        lastPrice: 1.4894159098541704
+      properties:
+        date:
+          format: date
+          title: Date
+          type: string
+        type:
+          title: Type
+          type: string
+        exchange:
+          title: Exchange
+          type: string
+        market:
+          title: Market
+          type: string
+        symbol:
+          title: Symbol
+          type: string
+        name:
+          title: Name
+          type: string
+        referencePrice:
+          title: Referenceprice
+          type: number
+        previousClose:
+          title: Previousclose
+          type: number
+        openPrice:
+          title: Openprice
+          type: number
+        openTime:
+          title: Opentime
+          type: integer
+        highPrice:
+          title: Highprice
+          type: number
+        highTime:
+          title: Hightime
+          type: integer
+        lowPrice:
+          title: Lowprice
+          type: number
+        lowTime:
+          title: Lowtime
+          type: integer
+        closePrice:
+          title: Closeprice
+          type: number
+        closeTime:
+          title: Closetime
+          type: integer
+        avgPrice:
+          title: Avgprice
+          type: number
+        change:
+          title: Change
+          type: number
+        changePercent:
+          title: Changepercent
+          type: number
+        amplitude:
+          title: Amplitude
+          type: number
+        lastPrice:
+          title: Lastprice
+          type: number
+        lastSize:
+          title: Lastsize
+          type: integer
+        bids:
+          items:
+            $ref: '#/components/schemas/BidAsk'
+          type: array
+        asks:
+          items:
+            $ref: '#/components/schemas/BidAsk'
+          type: array
+        total:
+          $ref: '#/components/schemas/Total'
+        lastTrade:
+          $ref: '#/components/schemas/LastTrade'
+        lastTrial:
+          $ref: '#/components/schemas/LastTrial'
+        isTrial:
+          type: boolean
+          nullable: true
+        isDelayedOpen:
+          type: boolean
+          nullable: true
+        isDelayedClose:
+          type: boolean
+          nullable: true
+        isOpen:
+          type: boolean
+          nullable: true
+        isClose:
+          type: boolean
+          nullable: true
+        lastUpdated:
+          title: Lastupdated
+          type: integer
+        serial:
+          title: Serial
+          type: integer
+      required:
+      - amplitude
+      - asks
+      - avgPrice
+      - bids
+      - change
+      - changePercent
+      - closePrice
+      - closeTime
+      - date
+      - exchange
+      - highPrice
+      - highTime
+      - lastPrice
+      - lastSize
+      - lastTrade
+      - lastTrial
+      - lastUpdated
+      - lowPrice
+      - lowTime
+      - market
+      - name
+      - openPrice
+      - openTime
+      - previousClose
+      - referencePrice
+      - serial
+      - symbol
+      - total
+      - type
+      title: QuoteResponse
+    SettlementResponse:
+      example:
+        date: date
+        c_date: c_date
+        price: price
+      properties:
+        c_date:
+          title: C Date
+          type: string
+        date:
+          title: Date
+          type: string
+        price:
+          title: Price
+          type: string
+      required:
+      - c_date
+      - date
+      - price
+      title: SettlementResponse
+    Total:
+      example:
+        tradeVolume: 5
+        tradeVolumeAtAsk: 9
+        tradeVolumeAtBid: 9
+        tradeValue: 4
+        time: 8
+        transaction: 6
+      properties:
+        tradeValue:
+          title: Tradevalue
+          type: integer
+        tradeVolume:
+          title: Tradevolume
+          type: integer
+        tradeVolumeAtBid:
+          title: Tradevolumeatbid
+          type: integer
+        tradeVolumeAtAsk:
+          title: Tradevolumeatask
+          type: integer
+        transaction:
+          title: Transaction
+          type: integer
+        time:
+          title: Time
+          type: integer
+      required:
+      - time
+      - tradeValue
+      - tradeVolume
+      - tradeVolumeAtAsk
+      - tradeVolumeAtBid
+      - transaction
+      title: Total
+    Trade:
+      enum:
+      - "0"
+      - "3"
+      - "4"
+      - A
+      title: Trade
+      type: string
+      x-enum-varnames:
+      - Cash
+      - Margin
+      - Short
+      - DayTradingSell
+    ValidationError:
+      example:
+        msg: msg
+        loc:
+        - ValidationError_loc_inner
+        - ValidationError_loc_inner
+        type: type
+      properties:
+        loc:
+          items:
+            $ref: '#/components/schemas/ValidationError_loc_inner'
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ValidationError_loc_inner:
+      anyOf:
+      - type: string
+      - type: integer
