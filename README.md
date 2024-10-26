@@ -78,16 +78,6 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*MarketAPI* | [**GetCandlesApiV1HistoricalCandlesGet**](docs/MarketAPI.md#getcandlesapiv1historicalcandlesget) | **Get** /api/v1/historical/candles | Get Candles
-*MarketAPI* | [**GetQuoteApiV1IntradayQuoteGet**](docs/MarketAPI.md#getquoteapiv1intradayquoteget) | **Get** /api/v1/intraday/quote | Get Quote
-*OrderAPI* | [**CreateOrderEndpointApiV1OrderPost**](docs/OrderAPI.md#createorderendpointapiv1orderpost) | **Post** /api/v1/order | Create Order Endpoint
-*OrderAPI* | [**DeleteOrderEndpointApiV1OrderOrdNoDelete**](docs/OrderAPI.md#deleteorderendpointapiv1orderordnodelete) | **Delete** /api/v1/order/{ord_no} | Delete Order Endpoint
-*OrderAPI* | [**GetMarketStatusEndpointApiV1MarketStatusGet**](docs/OrderAPI.md#getmarketstatusendpointapiv1marketstatusget) | **Get** /api/v1/market_status | Get Market Status Endpoint
-*OrderAPI* | [**GetOrdersEndpointApiV1OrdersGet**](docs/OrderAPI.md#getordersendpointapiv1ordersget) | **Get** /api/v1/orders | Get Orders Endpoint
-*SystemAPI* | [**PingApiV1PingGet**](docs/SystemAPI.md#pingapiv1pingget) | **Get** /api/v1/ping | Ping
-*WalletAPI* | [**GetBalanceEndpointApiV1BalanceGet**](docs/WalletAPI.md#getbalanceendpointapiv1balanceget) | **Get** /api/v1/balance | Get Balance Endpoint
-*WalletAPI* | [**GetInventoriesEndpointApiV1InventoriesGet**](docs/WalletAPI.md#getinventoriesendpointapiv1inventoriesget) | **Get** /api/v1/inventories | Get Inventories Endpoint
-*WalletAPI* | [**GetSettlementsEndpointApiV1SettlementsGet**](docs/WalletAPI.md#getsettlementsendpointapiv1settlementsget) | **Get** /api/v1/settlements | Get Settlements Endpoint
 
 
 ## Documentation For Models
@@ -140,6 +130,5 @@ Each of these functions takes a value of the given basic type and returns a poin
 * `PtrTime`
 
 ## Author
-
 
 
