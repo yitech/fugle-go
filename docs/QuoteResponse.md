@@ -31,11 +31,11 @@ Name | Type | Description | Notes
 **Total** | [**Total**](Total.md) |  | 
 **LastTrade** | [**LastTrade**](LastTrade.md) |  | 
 **LastTrial** | [**LastTrial**](LastTrial.md) |  | 
-**IsTrial** | Pointer to **bool** |  | [optional] 
-**IsDelayedOpen** | Pointer to **bool** |  | [optional] 
-**IsDelayedClose** | Pointer to **bool** |  | [optional] 
-**IsOpen** | Pointer to **bool** |  | [optional] 
-**IsClose** | Pointer to **bool** |  | [optional] 
+**IsTrial** | Pointer to **NullableBool** |  | [optional] 
+**IsDelayedOpen** | Pointer to **NullableBool** |  | [optional] 
+**IsDelayedClose** | Pointer to **NullableBool** |  | [optional] 
+**IsOpen** | Pointer to **NullableBool** |  | [optional] 
+**IsClose** | Pointer to **NullableBool** |  | [optional] 
 **LastUpdated** | **int32** |  | 
 **Serial** | **int32** |  | 
 
@@ -623,6 +623,16 @@ SetIsTrial sets IsTrial field to given value.
 
 HasIsTrial returns a boolean if a field has been set.
 
+### SetIsTrialNil
+
+`func (o *QuoteResponse) SetIsTrialNil(b bool)`
+
+ SetIsTrialNil sets the value for IsTrial to be an explicit nil
+
+### UnsetIsTrial
+`func (o *QuoteResponse) UnsetIsTrial()`
+
+UnsetIsTrial ensures that no value is present for IsTrial, not even an explicit nil
 ### GetIsDelayedOpen
 
 `func (o *QuoteResponse) GetIsDelayedOpen() bool`
@@ -648,6 +658,16 @@ SetIsDelayedOpen sets IsDelayedOpen field to given value.
 
 HasIsDelayedOpen returns a boolean if a field has been set.
 
+### SetIsDelayedOpenNil
+
+`func (o *QuoteResponse) SetIsDelayedOpenNil(b bool)`
+
+ SetIsDelayedOpenNil sets the value for IsDelayedOpen to be an explicit nil
+
+### UnsetIsDelayedOpen
+`func (o *QuoteResponse) UnsetIsDelayedOpen()`
+
+UnsetIsDelayedOpen ensures that no value is present for IsDelayedOpen, not even an explicit nil
 ### GetIsDelayedClose
 
 `func (o *QuoteResponse) GetIsDelayedClose() bool`
@@ -673,6 +693,16 @@ SetIsDelayedClose sets IsDelayedClose field to given value.
 
 HasIsDelayedClose returns a boolean if a field has been set.
 
+### SetIsDelayedCloseNil
+
+`func (o *QuoteResponse) SetIsDelayedCloseNil(b bool)`
+
+ SetIsDelayedCloseNil sets the value for IsDelayedClose to be an explicit nil
+
+### UnsetIsDelayedClose
+`func (o *QuoteResponse) UnsetIsDelayedClose()`
+
+UnsetIsDelayedClose ensures that no value is present for IsDelayedClose, not even an explicit nil
 ### GetIsOpen
 
 `func (o *QuoteResponse) GetIsOpen() bool`
@@ -698,6 +728,16 @@ SetIsOpen sets IsOpen field to given value.
 
 HasIsOpen returns a boolean if a field has been set.
 
+### SetIsOpenNil
+
+`func (o *QuoteResponse) SetIsOpenNil(b bool)`
+
+ SetIsOpenNil sets the value for IsOpen to be an explicit nil
+
+### UnsetIsOpen
+`func (o *QuoteResponse) UnsetIsOpen()`
+
+UnsetIsOpen ensures that no value is present for IsOpen, not even an explicit nil
 ### GetIsClose
 
 `func (o *QuoteResponse) GetIsClose() bool`
@@ -723,6 +763,16 @@ SetIsClose sets IsClose field to given value.
 
 HasIsClose returns a boolean if a field has been set.
 
+### SetIsCloseNil
+
+`func (o *QuoteResponse) SetIsCloseNil(b bool)`
+
+ SetIsCloseNil sets the value for IsClose to be an explicit nil
+
+### UnsetIsClose
+`func (o *QuoteResponse) UnsetIsClose()`
+
+UnsetIsClose ensures that no value is present for IsClose, not even an explicit nil
 ### GetLastUpdated
 
 `func (o *QuoteResponse) GetLastUpdated() int32`

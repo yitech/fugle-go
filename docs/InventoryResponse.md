@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApCode** | Pointer to **string** |  | [optional] 
+**ApCode** | Pointer to **NullableString** |  | [optional] 
 **CostQty** | **float32** |  | 
 **CostSum** | **float32** |  | 
 **MakeAPer** | **float32** |  | 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **StkDats** | [**[]InventoryDetail**](InventoryDetail.md) |  | 
 **StkNa** | **string** |  | 
 **StkNo** | **string** |  | 
-**Trade** | Pointer to **int32** |  | [optional] 
+**Trade** | Pointer to **NullableInt32** |  | [optional] 
 **ValueMkt** | **float32** |  | 
 **ValueNow** | **float32** |  | 
 
@@ -73,6 +73,16 @@ SetApCode sets ApCode field to given value.
 
 HasApCode returns a boolean if a field has been set.
 
+### SetApCodeNil
+
+`func (o *InventoryResponse) SetApCodeNil(b bool)`
+
+ SetApCodeNil sets the value for ApCode to be an explicit nil
+
+### UnsetApCode
+`func (o *InventoryResponse) UnsetApCode()`
+
+UnsetApCode ensures that no value is present for ApCode, not even an explicit nil
 ### GetCostQty
 
 `func (o *InventoryResponse) GetCostQty() float32`
@@ -498,6 +508,16 @@ SetTrade sets Trade field to given value.
 
 HasTrade returns a boolean if a field has been set.
 
+### SetTradeNil
+
+`func (o *InventoryResponse) SetTradeNil(b bool)`
+
+ SetTradeNil sets the value for Trade to be an explicit nil
+
+### UnsetTrade
+`func (o *InventoryResponse) UnsetTrade()`
+
+UnsetTrade ensures that no value is present for Trade, not even an explicit nil
 ### GetValueMkt
 
 `func (o *InventoryResponse) GetValueMkt() float32`

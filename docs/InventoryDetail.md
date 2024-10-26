@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BuySell** | **string** |  | 
-**CostR** | Pointer to **float32** |  | [optional] 
+**CostR** | Pointer to **NullableFloat32** |  | [optional] 
 **Fee** | **float32** |  | 
 **MakeA** | **float32** |  | 
 **MakeAPer** | **float32** |  | 
@@ -14,17 +14,17 @@ Name | Type | Description | Notes
 **Price** | **float32** |  | 
 **PriceEvn** | **float32** |  | 
 **Qty** | **int32** |  | 
-**QtyC** | Pointer to **int32** |  | [optional] 
-**QtyH** | Pointer to **int32** |  | [optional] 
-**QtyR** | Pointer to **int32** |  | [optional] 
+**QtyC** | Pointer to **NullableInt32** |  | [optional] 
+**QtyH** | Pointer to **NullableInt32** |  | [optional] 
+**QtyR** | Pointer to **NullableInt32** |  | [optional] 
 **TDate** | **string** |  | 
-**TTime** | Pointer to **string** |  | [optional] 
-**Tax** | Pointer to **float32** |  | [optional] 
-**TaxG** | Pointer to **float32** |  | [optional] 
-**Trade** | Pointer to **int32** |  | [optional] 
+**TTime** | Pointer to **NullableString** |  | [optional] 
+**Tax** | Pointer to **NullableFloat32** |  | [optional] 
+**TaxG** | Pointer to **NullableFloat32** |  | [optional] 
+**Trade** | Pointer to **NullableInt32** |  | [optional] 
 **ValueMkt** | **float32** |  | 
 **ValueNow** | **float32** |  | 
-**UserDef** | Pointer to **string** |  | [optional] 
+**UserDef** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -90,6 +90,16 @@ SetCostR sets CostR field to given value.
 
 HasCostR returns a boolean if a field has been set.
 
+### SetCostRNil
+
+`func (o *InventoryDetail) SetCostRNil(b bool)`
+
+ SetCostRNil sets the value for CostR to be an explicit nil
+
+### UnsetCostR
+`func (o *InventoryDetail) UnsetCostR()`
+
+UnsetCostR ensures that no value is present for CostR, not even an explicit nil
 ### GetFee
 
 `func (o *InventoryDetail) GetFee() float32`
@@ -275,6 +285,16 @@ SetQtyC sets QtyC field to given value.
 
 HasQtyC returns a boolean if a field has been set.
 
+### SetQtyCNil
+
+`func (o *InventoryDetail) SetQtyCNil(b bool)`
+
+ SetQtyCNil sets the value for QtyC to be an explicit nil
+
+### UnsetQtyC
+`func (o *InventoryDetail) UnsetQtyC()`
+
+UnsetQtyC ensures that no value is present for QtyC, not even an explicit nil
 ### GetQtyH
 
 `func (o *InventoryDetail) GetQtyH() int32`
@@ -300,6 +320,16 @@ SetQtyH sets QtyH field to given value.
 
 HasQtyH returns a boolean if a field has been set.
 
+### SetQtyHNil
+
+`func (o *InventoryDetail) SetQtyHNil(b bool)`
+
+ SetQtyHNil sets the value for QtyH to be an explicit nil
+
+### UnsetQtyH
+`func (o *InventoryDetail) UnsetQtyH()`
+
+UnsetQtyH ensures that no value is present for QtyH, not even an explicit nil
 ### GetQtyR
 
 `func (o *InventoryDetail) GetQtyR() int32`
@@ -325,6 +355,16 @@ SetQtyR sets QtyR field to given value.
 
 HasQtyR returns a boolean if a field has been set.
 
+### SetQtyRNil
+
+`func (o *InventoryDetail) SetQtyRNil(b bool)`
+
+ SetQtyRNil sets the value for QtyR to be an explicit nil
+
+### UnsetQtyR
+`func (o *InventoryDetail) UnsetQtyR()`
+
+UnsetQtyR ensures that no value is present for QtyR, not even an explicit nil
 ### GetTDate
 
 `func (o *InventoryDetail) GetTDate() string`
@@ -370,6 +410,16 @@ SetTTime sets TTime field to given value.
 
 HasTTime returns a boolean if a field has been set.
 
+### SetTTimeNil
+
+`func (o *InventoryDetail) SetTTimeNil(b bool)`
+
+ SetTTimeNil sets the value for TTime to be an explicit nil
+
+### UnsetTTime
+`func (o *InventoryDetail) UnsetTTime()`
+
+UnsetTTime ensures that no value is present for TTime, not even an explicit nil
 ### GetTax
 
 `func (o *InventoryDetail) GetTax() float32`
@@ -395,6 +445,16 @@ SetTax sets Tax field to given value.
 
 HasTax returns a boolean if a field has been set.
 
+### SetTaxNil
+
+`func (o *InventoryDetail) SetTaxNil(b bool)`
+
+ SetTaxNil sets the value for Tax to be an explicit nil
+
+### UnsetTax
+`func (o *InventoryDetail) UnsetTax()`
+
+UnsetTax ensures that no value is present for Tax, not even an explicit nil
 ### GetTaxG
 
 `func (o *InventoryDetail) GetTaxG() float32`
@@ -420,6 +480,16 @@ SetTaxG sets TaxG field to given value.
 
 HasTaxG returns a boolean if a field has been set.
 
+### SetTaxGNil
+
+`func (o *InventoryDetail) SetTaxGNil(b bool)`
+
+ SetTaxGNil sets the value for TaxG to be an explicit nil
+
+### UnsetTaxG
+`func (o *InventoryDetail) UnsetTaxG()`
+
+UnsetTaxG ensures that no value is present for TaxG, not even an explicit nil
 ### GetTrade
 
 `func (o *InventoryDetail) GetTrade() int32`
@@ -445,6 +515,16 @@ SetTrade sets Trade field to given value.
 
 HasTrade returns a boolean if a field has been set.
 
+### SetTradeNil
+
+`func (o *InventoryDetail) SetTradeNil(b bool)`
+
+ SetTradeNil sets the value for Trade to be an explicit nil
+
+### UnsetTrade
+`func (o *InventoryDetail) UnsetTrade()`
+
+UnsetTrade ensures that no value is present for Trade, not even an explicit nil
 ### GetValueMkt
 
 `func (o *InventoryDetail) GetValueMkt() float32`
@@ -510,6 +590,16 @@ SetUserDef sets UserDef field to given value.
 
 HasUserDef returns a boolean if a field has been set.
 
+### SetUserDefNil
+
+`func (o *InventoryDetail) SetUserDefNil(b bool)`
+
+ SetUserDefNil sets the value for UserDef to be an explicit nil
+
+### UnsetUserDef
+`func (o *InventoryDetail) UnsetUserDef()`
+
+UnsetUserDef ensures that no value is present for UserDef, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
