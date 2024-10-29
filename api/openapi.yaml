@@ -86,6 +86,41 @@ paths:
       summary: Get Market Status Endpoint
       tags:
       - Order
+  /api/v1/transactions:
+    get:
+      operationId: get_transaction_endpoint_api_v1_transactions_get
+      parameters:
+      - explode: true
+        in: query
+        name: query_range
+        required: true
+        schema:
+          enum:
+          - 0d
+          - 3d
+          - 1m
+          - 3m
+          title: Query Range
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/app__schema__v1__order__TransactionResponse'
+                type: array
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Transaction Endpoint
+      tags:
+      - Order
   /api/v1/intraday/quote:
     get:
       operationId: get_quote_api_v1_intraday_quote_get
@@ -202,7 +237,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BalanceResponse'
+                $ref: '#/components/schemas/app__schema__v1__wallet__BalanceResponse'
           description: Successful Response
       summary: Get Balance Endpoint
       tags:
@@ -216,7 +251,71 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/InventoryResponse'
+                  $ref: '#/components/schemas/app__schema__v1__wallet__InventoryResponse'
+                type: array
+          description: Successful Response
+      summary: Get Inventories Endpoint
+      tags:
+      - Wallet
+  /api/v2/transactions:
+    get:
+      operationId: get_transaction_endpoint_api_v2_transactions_get
+      parameters:
+      - explode: true
+        in: query
+        name: query_range
+        required: false
+        schema:
+          default: 0d
+          enum:
+          - 0d
+          - 3d
+          - 1m
+          - 3m
+          title: Query Range
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/app__schema__v2__trade__TransactionResponse'
+                type: array
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Transaction Endpoint
+      tags:
+      - Trade
+  /api/v2/balance:
+    get:
+      operationId: get_balance_endpoint_api_v2_balance_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app__schema__v2__wallet__BalanceResponse'
+          description: Successful Response
+      summary: Get Balance Endpoint
+      tags:
+      - Wallet
+  /api/v2/inventories:
+    get:
+      operationId: get_inventories_endpoint_api_v2_inventories_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/app__schema__v2__wallet__InventoryResponse'
                 type: array
           description: Successful Response
       summary: Get Inventories Endpoint
@@ -271,26 +370,6 @@ components:
       - FOK
       - IOC
       - ROD
-    BalanceResponse:
-      example:
-        stock_pre_save_amount: 1
-        available_balance: 0
-        exchange_balance: 6
-      properties:
-        available_balance:
-          title: Available Balance
-          type: integer
-        exchange_balance:
-          title: Exchange Balance
-          type: integer
-        stock_pre_save_amount:
-          title: Stock Pre Save Amount
-          type: integer
-      required:
-      - available_balance
-      - exchange_balance
-      - stock_pre_save_amount
-      title: BalanceResponse
     BidAsk:
       example:
         size: 1
@@ -491,172 +570,6 @@ components:
       - value_mkt
       - value_now
       title: InventoryDetail
-    InventoryResponse:
-      example:
-        qty_s: 1
-        stk_no: stk_no
-        make_a_per: 1.4658129805029452
-        s_type: s_type
-        value_mkt: 6.704019297950036
-        value_now: 3.353193347011243
-        stk_dats:
-        - ord_no: ord_no
-          cost_r: 7.457744773683766
-          t_date: t_date
-          tax_g: 1.284659006116532
-          fee: 1.1730742509559433
-          qty_r: 3
-          make_a_per: 5.025004791520295
-          value_mkt: 6.778324963048013
-          value_now: 6.878052220127876
-          tax: 6.965117697638846
-          pay_n: 9.965781217890562
-          qty_h: 6
-          trade: 2
-          user_def: user_def
-          qty_c: 9
-          price: 9.369310271410669
-          price_evn: 6.683562403749608
-          qty: 8
-          make_a: 4.965218492984954
-          t_time: t_time
-          buy_sell: buy_sell
-        - ord_no: ord_no
-          cost_r: 7.457744773683766
-          t_date: t_date
-          tax_g: 1.284659006116532
-          fee: 1.1730742509559433
-          qty_r: 3
-          make_a_per: 5.025004791520295
-          value_mkt: 6.778324963048013
-          value_now: 6.878052220127876
-          tax: 6.965117697638846
-          pay_n: 9.965781217890562
-          qty_h: 6
-          trade: 2
-          user_def: user_def
-          qty_c: 9
-          price: 9.369310271410669
-          price_evn: 6.683562403749608
-          qty: 8
-          make_a: 4.965218492984954
-          t_time: t_time
-          buy_sell: buy_sell
-        price_avg: 5.637376656633329
-        cost_sum: 6.027456183070403
-        qty_l: 1
-        qty_sm: 1
-        cost_qty: 0.8008281904610115
-        price_mkt: 7.061401241503109
-        price_now: 9.301444243932576
-        trade: 5
-        qty_c: 7
-        price_qty_sum: 3.616076749251911
-        price_evn: 2.3021358869347655
-        qty_b: 2
-        ap_code: ap_code
-        make_a_sum: 5.962133916683182
-        qty_bm: 4
-        stk_na: stk_na
-        rec_va_sum: 6.84685269835264
-      properties:
-        ap_code:
-          type: string
-          nullable: true
-        cost_qty:
-          title: Cost Qty
-          type: number
-        cost_sum:
-          title: Cost Sum
-          type: number
-        make_a_per:
-          title: Make A Per
-          type: number
-        make_a_sum:
-          title: Make A Sum
-          type: number
-        price_avg:
-          title: Price Avg
-          type: number
-        price_evn:
-          title: Price Evn
-          type: number
-        price_mkt:
-          title: Price Mkt
-          type: number
-        price_now:
-          title: Price Now
-          type: number
-        price_qty_sum:
-          title: Price Qty Sum
-          type: number
-        qty_b:
-          title: Qty B
-          type: integer
-        qty_bm:
-          title: Qty Bm
-          type: integer
-        qty_c:
-          title: Qty C
-          type: integer
-        qty_l:
-          title: Qty L
-          type: integer
-        qty_s:
-          title: Qty S
-          type: integer
-        qty_sm:
-          title: Qty Sm
-          type: integer
-        rec_va_sum:
-          title: Rec Va Sum
-          type: number
-        s_type:
-          title: S Type
-          type: string
-        stk_dats:
-          items:
-            $ref: '#/components/schemas/InventoryDetail'
-          type: array
-        stk_na:
-          title: Stk Na
-          type: string
-        stk_no:
-          title: Stk No
-          type: string
-        trade:
-          type: integer
-          nullable: true
-        value_mkt:
-          title: Value Mkt
-          type: number
-        value_now:
-          title: Value Now
-          type: number
-      required:
-      - cost_qty
-      - cost_sum
-      - make_a_per
-      - make_a_sum
-      - price_avg
-      - price_evn
-      - price_mkt
-      - price_now
-      - price_qty_sum
-      - qty_b
-      - qty_bm
-      - qty_c
-      - qty_l
-      - qty_s
-      - qty_sm
-      - rec_va_sum
-      - s_type
-      - stk_dats
-      - stk_na
-      - stk_no
-      - value_mkt
-      - value_now
-      title: InventoryResponse
     KLine:
       example:
         date: 2000-01-23
@@ -831,6 +744,111 @@ components:
       - last_trading_day
       - next_trading_day
       title: MarketStatusResponse
+    MatDetail:
+      example:
+        order_no: order_no
+        t_date: t_date
+        make_per: 5.637376656633329
+        tax_g: tax_g
+        stk_no: stk_no
+        fee: fee
+        s_type: s_type
+        tax: tax
+        pay_n: pay_n
+        price_qty: price_qty
+        c_date: c_date
+        db_fee: "0"
+        trade: 2
+        user_def: ""
+        price: price
+        qty: qty
+        stk_na: stk_na
+        t_time: ""
+        buy_sell: buy_sell
+        make: 5
+      properties:
+        buy_sell:
+          title: Buy Sell
+          type: string
+        c_date:
+          title: C Date
+          type: string
+        db_fee:
+          default: "0"
+          title: Db Fee
+          type: string
+        fee:
+          title: Fee
+          type: string
+        make:
+          title: Make
+          type: integer
+        make_per:
+          title: Make Per
+          type: number
+        order_no:
+          title: Order No
+          type: string
+        pay_n:
+          title: Pay N
+          type: string
+        price:
+          title: Price
+          type: string
+        price_qty:
+          title: Price Qty
+          type: string
+        qty:
+          title: Qty
+          type: string
+        s_type:
+          title: S Type
+          type: string
+        stk_na:
+          title: Stk Na
+          type: string
+        stk_no:
+          title: Stk No
+          type: string
+        t_date:
+          title: T Date
+          type: string
+        t_time:
+          default: ""
+          title: T Time
+          type: string
+        tax:
+          title: Tax
+          type: string
+        tax_g:
+          title: Tax G
+          type: string
+        trade:
+          title: Trade
+          type: integer
+        user_def:
+          default: ""
+          title: User Def
+          type: string
+      required:
+      - buy_sell
+      - c_date
+      - fee
+      - make
+      - make_per
+      - order_no
+      - pay_n
+      - price
+      - price_qty
+      - qty
+      - s_type
+      - stk_na
+      - stk_no
+      - t_date
+      - tax
+      - tax_g
+      - trade
+      title: MatDetail
     OrderResponse:
       example:
         ord_no: ord_no
@@ -1293,6 +1311,397 @@ components:
       - msg
       - type
       title: ValidationError
+    app__schema__v1__order__TransactionResponse:
+      example:
+        t_date: t_date
+        cost: 0
+        make_per: 1.4658129805029452
+        mat_dats:
+        - order_no: order_no
+          t_date: t_date
+          make_per: 5.637376656633329
+          tax_g: tax_g
+          stk_no: stk_no
+          fee: fee
+          s_type: s_type
+          tax: tax
+          pay_n: pay_n
+          price_qty: price_qty
+          c_date: c_date
+          db_fee: "0"
+          trade: 2
+          user_def: ""
+          price: price
+          qty: qty
+          stk_na: stk_na
+          t_time: ""
+          buy_sell: buy_sell
+          make: 5
+        - order_no: order_no
+          t_date: t_date
+          make_per: 5.637376656633329
+          tax_g: tax_g
+          stk_no: stk_no
+          fee: fee
+          s_type: s_type
+          tax: tax
+          pay_n: pay_n
+          price_qty: price_qty
+          c_date: c_date
+          db_fee: "0"
+          trade: 2
+          user_def: ""
+          price: price
+          qty: qty
+          stk_na: stk_na
+          t_time: ""
+          buy_sell: buy_sell
+          make: 5
+        stk_no: stk_no
+        s_type: s_type
+        price_avg: price_avg
+        price_qty: price_qty
+        c_date: c_date
+        recv: 7
+        trade: 9
+        qty: qty
+        stk_na: stk_na
+        buy_sell: buy_sell
+        make: 6
+      properties:
+        buy_sell:
+          title: Buy Sell
+          type: string
+        c_date:
+          title: C Date
+          type: string
+        cost:
+          title: Cost
+          type: integer
+        make:
+          title: Make
+          type: integer
+        make_per:
+          title: Make Per
+          type: number
+        mat_dats:
+          items:
+            $ref: '#/components/schemas/MatDetail'
+          type: array
+        price_avg:
+          title: Price Avg
+          type: string
+        price_qty:
+          title: Price Qty
+          type: string
+        qty:
+          title: Qty
+          type: string
+        recv:
+          title: Recv
+          type: integer
+        s_type:
+          title: S Type
+          type: string
+        stk_na:
+          title: Stk Na
+          type: string
+        stk_no:
+          title: Stk No
+          type: string
+        t_date:
+          title: T Date
+          type: string
+        trade:
+          title: Trade
+          type: integer
+      required:
+      - buy_sell
+      - c_date
+      - cost
+      - make
+      - make_per
+      - mat_dats
+      - price_avg
+      - price_qty
+      - qty
+      - recv
+      - s_type
+      - stk_na
+      - stk_no
+      - t_date
+      - trade
+      title: TransactionResponse
+    app__schema__v1__wallet__BalanceResponse:
+      example:
+        stock_pre_save_amount: 1
+        available_balance: 0
+        exchange_balance: 6
+      properties:
+        available_balance:
+          title: Available Balance
+          type: integer
+        exchange_balance:
+          title: Exchange Balance
+          type: integer
+        stock_pre_save_amount:
+          title: Stock Pre Save Amount
+          type: integer
+      required:
+      - available_balance
+      - exchange_balance
+      - stock_pre_save_amount
+      title: BalanceResponse
+    app__schema__v1__wallet__InventoryResponse:
+      example:
+        qty_s: 1
+        stk_no: stk_no
+        make_a_per: 1.4658129805029452
+        s_type: s_type
+        value_mkt: 6.704019297950036
+        value_now: 3.353193347011243
+        stk_dats:
+        - ord_no: ord_no
+          cost_r: 7.457744773683766
+          t_date: t_date
+          tax_g: 1.284659006116532
+          fee: 1.1730742509559433
+          qty_r: 3
+          make_a_per: 5.025004791520295
+          value_mkt: 6.778324963048013
+          value_now: 6.878052220127876
+          tax: 6.965117697638846
+          pay_n: 9.965781217890562
+          qty_h: 6
+          trade: 2
+          user_def: user_def
+          qty_c: 9
+          price: 9.369310271410669
+          price_evn: 6.683562403749608
+          qty: 8
+          make_a: 4.965218492984954
+          t_time: t_time
+          buy_sell: buy_sell
+        - ord_no: ord_no
+          cost_r: 7.457744773683766
+          t_date: t_date
+          tax_g: 1.284659006116532
+          fee: 1.1730742509559433
+          qty_r: 3
+          make_a_per: 5.025004791520295
+          value_mkt: 6.778324963048013
+          value_now: 6.878052220127876
+          tax: 6.965117697638846
+          pay_n: 9.965781217890562
+          qty_h: 6
+          trade: 2
+          user_def: user_def
+          qty_c: 9
+          price: 9.369310271410669
+          price_evn: 6.683562403749608
+          qty: 8
+          make_a: 4.965218492984954
+          t_time: t_time
+          buy_sell: buy_sell
+        price_avg: 5.637376656633329
+        cost_sum: 6.027456183070403
+        qty_l: 1
+        qty_sm: 1
+        cost_qty: 0.8008281904610115
+        price_mkt: 7.061401241503109
+        price_now: 9.301444243932576
+        trade: 5
+        qty_c: 7
+        price_qty_sum: 3.616076749251911
+        price_evn: 2.3021358869347655
+        qty_b: 2
+        ap_code: ap_code
+        make_a_sum: 5.962133916683182
+        qty_bm: 4
+        stk_na: stk_na
+        rec_va_sum: 6.84685269835264
+      properties:
+        ap_code:
+          type: string
+          nullable: true
+        cost_qty:
+          title: Cost Qty
+          type: number
+        cost_sum:
+          title: Cost Sum
+          type: number
+        make_a_per:
+          title: Make A Per
+          type: number
+        make_a_sum:
+          title: Make A Sum
+          type: number
+        price_avg:
+          title: Price Avg
+          type: number
+        price_evn:
+          title: Price Evn
+          type: number
+        price_mkt:
+          title: Price Mkt
+          type: number
+        price_now:
+          title: Price Now
+          type: number
+        price_qty_sum:
+          title: Price Qty Sum
+          type: number
+        qty_b:
+          title: Qty B
+          type: integer
+        qty_bm:
+          title: Qty Bm
+          type: integer
+        qty_c:
+          title: Qty C
+          type: integer
+        qty_l:
+          title: Qty L
+          type: integer
+        qty_s:
+          title: Qty S
+          type: integer
+        qty_sm:
+          title: Qty Sm
+          type: integer
+        rec_va_sum:
+          title: Rec Va Sum
+          type: number
+        s_type:
+          title: S Type
+          type: string
+        stk_dats:
+          items:
+            $ref: '#/components/schemas/InventoryDetail'
+          type: array
+        stk_na:
+          title: Stk Na
+          type: string
+        stk_no:
+          title: Stk No
+          type: string
+        trade:
+          type: integer
+          nullable: true
+        value_mkt:
+          title: Value Mkt
+          type: number
+        value_now:
+          title: Value Now
+          type: number
+      required:
+      - cost_qty
+      - cost_sum
+      - make_a_per
+      - make_a_sum
+      - price_avg
+      - price_evn
+      - price_mkt
+      - price_now
+      - price_qty_sum
+      - qty_b
+      - qty_bm
+      - qty_c
+      - qty_l
+      - qty_s
+      - qty_sm
+      - rec_va_sum
+      - s_type
+      - stk_dats
+      - stk_na
+      - stk_no
+      - value_mkt
+      - value_now
+      title: InventoryResponse
+    app__schema__v2__trade__TransactionResponse:
+      example:
+        order_no: order_no
+        side: B
+        datetime: 2000-01-23T04:56:07.000+00:00
+        trade: 5
+        stk_no: stk_no
+        price: 6.027456183070403
+        fee: 0
+        qty: 1
+        tax: 5
+      properties:
+        side:
+          enum:
+          - B
+          - S
+          title: Side
+          type: string
+        datetime:
+          format: date-time
+          title: Datetime
+          type: string
+        fee:
+          title: Fee
+          type: integer
+        order_no:
+          title: Order No
+          type: string
+        price:
+          title: Price
+          type: number
+        qty:
+          title: Qty
+          type: integer
+        stk_no:
+          title: Stk No
+          type: string
+        tax:
+          title: Tax
+          type: integer
+        trade:
+          title: Trade
+          type: integer
+      required:
+      - datetime
+      - fee
+      - order_no
+      - price
+      - qty
+      - side
+      - stk_no
+      - tax
+      - trade
+      title: TransactionResponse
+    app__schema__v2__wallet__BalanceResponse:
+      example:
+        available: 0
+        locked: 6
+      properties:
+        available:
+          title: Available
+          type: integer
+        locked:
+          title: Locked
+          type: integer
+      required:
+      - available
+      - locked
+      title: BalanceResponse
+    app__schema__v2__wallet__InventoryResponse:
+      example:
+        symbol: symbol
+        qty_share: 0
+      properties:
+        symbol:
+          title: Symbol
+          type: string
+        qty_share:
+          title: Qty Share
+          type: integer
+      required:
+      - qty_share
+      - symbol
+      title: InventoryResponse
     ValidationError_loc_inner:
       anyOf:
       - type: string

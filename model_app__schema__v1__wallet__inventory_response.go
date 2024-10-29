@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the InventoryResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &InventoryResponse{}
+// checks if the AppSchemaV1WalletInventoryResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AppSchemaV1WalletInventoryResponse{}
 
-// InventoryResponse struct for InventoryResponse
-type InventoryResponse struct {
+// AppSchemaV1WalletInventoryResponse struct for AppSchemaV1WalletInventoryResponse
+type AppSchemaV1WalletInventoryResponse struct {
 	ApCode *string `json:"ap_code,omitempty"`
 	CostQty float32 `json:"cost_qty"`
 	CostSum float32 `json:"cost_sum"`
@@ -47,14 +47,14 @@ type InventoryResponse struct {
 	ValueNow float32 `json:"value_now"`
 }
 
-type _InventoryResponse InventoryResponse
+type _AppSchemaV1WalletInventoryResponse AppSchemaV1WalletInventoryResponse
 
-// NewInventoryResponse instantiates a new InventoryResponse object
+// NewAppSchemaV1WalletInventoryResponse instantiates a new AppSchemaV1WalletInventoryResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInventoryResponse(costQty float32, costSum float32, makeAPer float32, makeASum float32, priceAvg float32, priceEvn float32, priceMkt float32, priceNow float32, priceQtySum float32, qtyB int32, qtyBm int32, qtyC int32, qtyL int32, qtyS int32, qtySm int32, recVaSum float32, sType string, stkDats []InventoryDetail, stkNa string, stkNo string, valueMkt float32, valueNow float32) *InventoryResponse {
-	this := InventoryResponse{}
+func NewAppSchemaV1WalletInventoryResponse(costQty float32, costSum float32, makeAPer float32, makeASum float32, priceAvg float32, priceEvn float32, priceMkt float32, priceNow float32, priceQtySum float32, qtyB int32, qtyBm int32, qtyC int32, qtyL int32, qtyS int32, qtySm int32, recVaSum float32, sType string, stkDats []InventoryDetail, stkNa string, stkNo string, valueMkt float32, valueNow float32) *AppSchemaV1WalletInventoryResponse {
+	this := AppSchemaV1WalletInventoryResponse{}
 	this.CostQty = costQty
 	this.CostSum = costSum
 	this.MakeAPer = makeAPer
@@ -80,16 +80,16 @@ func NewInventoryResponse(costQty float32, costSum float32, makeAPer float32, ma
 	return &this
 }
 
-// NewInventoryResponseWithDefaults instantiates a new InventoryResponse object
+// NewAppSchemaV1WalletInventoryResponseWithDefaults instantiates a new AppSchemaV1WalletInventoryResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInventoryResponseWithDefaults() *InventoryResponse {
-	this := InventoryResponse{}
+func NewAppSchemaV1WalletInventoryResponseWithDefaults() *AppSchemaV1WalletInventoryResponse {
+	this := AppSchemaV1WalletInventoryResponse{}
 	return &this
 }
 
 // GetApCode returns the ApCode field value if set, zero value otherwise.
-func (o *InventoryResponse) GetApCode() string {
+func (o *AppSchemaV1WalletInventoryResponse) GetApCode() string {
 	if o == nil || IsNil(o.ApCode) {
 		var ret string
 		return ret
@@ -99,7 +99,7 @@ func (o *InventoryResponse) GetApCode() string {
 
 // GetApCodeOk returns a tuple with the ApCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetApCodeOk() (*string, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetApCodeOk() (*string, bool) {
 	if o == nil || IsNil(o.ApCode) {
 		return nil, false
 	}
@@ -107,7 +107,7 @@ func (o *InventoryResponse) GetApCodeOk() (*string, bool) {
 }
 
 // HasApCode returns a boolean if a field has been set.
-func (o *InventoryResponse) HasApCode() bool {
+func (o *AppSchemaV1WalletInventoryResponse) HasApCode() bool {
 	if o != nil && !IsNil(o.ApCode) {
 		return true
 	}
@@ -116,12 +116,12 @@ func (o *InventoryResponse) HasApCode() bool {
 }
 
 // SetApCode gets a reference to the given string and assigns it to the ApCode field.
-func (o *InventoryResponse) SetApCode(v string) {
+func (o *AppSchemaV1WalletInventoryResponse) SetApCode(v string) {
 	o.ApCode = &v
 }
 
 // GetCostQty returns the CostQty field value
-func (o *InventoryResponse) GetCostQty() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetCostQty() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -132,7 +132,7 @@ func (o *InventoryResponse) GetCostQty() float32 {
 
 // GetCostQtyOk returns a tuple with the CostQty field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetCostQtyOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetCostQtyOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,12 +140,12 @@ func (o *InventoryResponse) GetCostQtyOk() (*float32, bool) {
 }
 
 // SetCostQty sets field value
-func (o *InventoryResponse) SetCostQty(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetCostQty(v float32) {
 	o.CostQty = v
 }
 
 // GetCostSum returns the CostSum field value
-func (o *InventoryResponse) GetCostSum() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetCostSum() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -156,7 +156,7 @@ func (o *InventoryResponse) GetCostSum() float32 {
 
 // GetCostSumOk returns a tuple with the CostSum field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetCostSumOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetCostSumOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -164,12 +164,12 @@ func (o *InventoryResponse) GetCostSumOk() (*float32, bool) {
 }
 
 // SetCostSum sets field value
-func (o *InventoryResponse) SetCostSum(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetCostSum(v float32) {
 	o.CostSum = v
 }
 
 // GetMakeAPer returns the MakeAPer field value
-func (o *InventoryResponse) GetMakeAPer() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetMakeAPer() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -180,7 +180,7 @@ func (o *InventoryResponse) GetMakeAPer() float32 {
 
 // GetMakeAPerOk returns a tuple with the MakeAPer field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetMakeAPerOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetMakeAPerOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -188,12 +188,12 @@ func (o *InventoryResponse) GetMakeAPerOk() (*float32, bool) {
 }
 
 // SetMakeAPer sets field value
-func (o *InventoryResponse) SetMakeAPer(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetMakeAPer(v float32) {
 	o.MakeAPer = v
 }
 
 // GetMakeASum returns the MakeASum field value
-func (o *InventoryResponse) GetMakeASum() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetMakeASum() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -204,7 +204,7 @@ func (o *InventoryResponse) GetMakeASum() float32 {
 
 // GetMakeASumOk returns a tuple with the MakeASum field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetMakeASumOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetMakeASumOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -212,12 +212,12 @@ func (o *InventoryResponse) GetMakeASumOk() (*float32, bool) {
 }
 
 // SetMakeASum sets field value
-func (o *InventoryResponse) SetMakeASum(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetMakeASum(v float32) {
 	o.MakeASum = v
 }
 
 // GetPriceAvg returns the PriceAvg field value
-func (o *InventoryResponse) GetPriceAvg() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceAvg() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -228,7 +228,7 @@ func (o *InventoryResponse) GetPriceAvg() float32 {
 
 // GetPriceAvgOk returns a tuple with the PriceAvg field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetPriceAvgOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceAvgOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -236,12 +236,12 @@ func (o *InventoryResponse) GetPriceAvgOk() (*float32, bool) {
 }
 
 // SetPriceAvg sets field value
-func (o *InventoryResponse) SetPriceAvg(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetPriceAvg(v float32) {
 	o.PriceAvg = v
 }
 
 // GetPriceEvn returns the PriceEvn field value
-func (o *InventoryResponse) GetPriceEvn() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceEvn() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -252,7 +252,7 @@ func (o *InventoryResponse) GetPriceEvn() float32 {
 
 // GetPriceEvnOk returns a tuple with the PriceEvn field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetPriceEvnOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceEvnOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -260,12 +260,12 @@ func (o *InventoryResponse) GetPriceEvnOk() (*float32, bool) {
 }
 
 // SetPriceEvn sets field value
-func (o *InventoryResponse) SetPriceEvn(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetPriceEvn(v float32) {
 	o.PriceEvn = v
 }
 
 // GetPriceMkt returns the PriceMkt field value
-func (o *InventoryResponse) GetPriceMkt() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceMkt() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -276,7 +276,7 @@ func (o *InventoryResponse) GetPriceMkt() float32 {
 
 // GetPriceMktOk returns a tuple with the PriceMkt field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetPriceMktOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceMktOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -284,12 +284,12 @@ func (o *InventoryResponse) GetPriceMktOk() (*float32, bool) {
 }
 
 // SetPriceMkt sets field value
-func (o *InventoryResponse) SetPriceMkt(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetPriceMkt(v float32) {
 	o.PriceMkt = v
 }
 
 // GetPriceNow returns the PriceNow field value
-func (o *InventoryResponse) GetPriceNow() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceNow() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -300,7 +300,7 @@ func (o *InventoryResponse) GetPriceNow() float32 {
 
 // GetPriceNowOk returns a tuple with the PriceNow field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetPriceNowOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceNowOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -308,12 +308,12 @@ func (o *InventoryResponse) GetPriceNowOk() (*float32, bool) {
 }
 
 // SetPriceNow sets field value
-func (o *InventoryResponse) SetPriceNow(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetPriceNow(v float32) {
 	o.PriceNow = v
 }
 
 // GetPriceQtySum returns the PriceQtySum field value
-func (o *InventoryResponse) GetPriceQtySum() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceQtySum() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -324,7 +324,7 @@ func (o *InventoryResponse) GetPriceQtySum() float32 {
 
 // GetPriceQtySumOk returns a tuple with the PriceQtySum field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetPriceQtySumOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetPriceQtySumOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -332,12 +332,12 @@ func (o *InventoryResponse) GetPriceQtySumOk() (*float32, bool) {
 }
 
 // SetPriceQtySum sets field value
-func (o *InventoryResponse) SetPriceQtySum(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetPriceQtySum(v float32) {
 	o.PriceQtySum = v
 }
 
 // GetQtyB returns the QtyB field value
-func (o *InventoryResponse) GetQtyB() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyB() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -348,7 +348,7 @@ func (o *InventoryResponse) GetQtyB() int32 {
 
 // GetQtyBOk returns a tuple with the QtyB field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetQtyBOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyBOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -356,12 +356,12 @@ func (o *InventoryResponse) GetQtyBOk() (*int32, bool) {
 }
 
 // SetQtyB sets field value
-func (o *InventoryResponse) SetQtyB(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetQtyB(v int32) {
 	o.QtyB = v
 }
 
 // GetQtyBm returns the QtyBm field value
-func (o *InventoryResponse) GetQtyBm() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyBm() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -372,7 +372,7 @@ func (o *InventoryResponse) GetQtyBm() int32 {
 
 // GetQtyBmOk returns a tuple with the QtyBm field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetQtyBmOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyBmOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -380,12 +380,12 @@ func (o *InventoryResponse) GetQtyBmOk() (*int32, bool) {
 }
 
 // SetQtyBm sets field value
-func (o *InventoryResponse) SetQtyBm(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetQtyBm(v int32) {
 	o.QtyBm = v
 }
 
 // GetQtyC returns the QtyC field value
-func (o *InventoryResponse) GetQtyC() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyC() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -396,7 +396,7 @@ func (o *InventoryResponse) GetQtyC() int32 {
 
 // GetQtyCOk returns a tuple with the QtyC field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetQtyCOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyCOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -404,12 +404,12 @@ func (o *InventoryResponse) GetQtyCOk() (*int32, bool) {
 }
 
 // SetQtyC sets field value
-func (o *InventoryResponse) SetQtyC(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetQtyC(v int32) {
 	o.QtyC = v
 }
 
 // GetQtyL returns the QtyL field value
-func (o *InventoryResponse) GetQtyL() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyL() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -420,7 +420,7 @@ func (o *InventoryResponse) GetQtyL() int32 {
 
 // GetQtyLOk returns a tuple with the QtyL field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetQtyLOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyLOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -428,12 +428,12 @@ func (o *InventoryResponse) GetQtyLOk() (*int32, bool) {
 }
 
 // SetQtyL sets field value
-func (o *InventoryResponse) SetQtyL(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetQtyL(v int32) {
 	o.QtyL = v
 }
 
 // GetQtyS returns the QtyS field value
-func (o *InventoryResponse) GetQtyS() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtyS() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -444,7 +444,7 @@ func (o *InventoryResponse) GetQtyS() int32 {
 
 // GetQtySOk returns a tuple with the QtyS field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetQtySOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtySOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -452,12 +452,12 @@ func (o *InventoryResponse) GetQtySOk() (*int32, bool) {
 }
 
 // SetQtyS sets field value
-func (o *InventoryResponse) SetQtyS(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetQtyS(v int32) {
 	o.QtyS = v
 }
 
 // GetQtySm returns the QtySm field value
-func (o *InventoryResponse) GetQtySm() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtySm() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -468,7 +468,7 @@ func (o *InventoryResponse) GetQtySm() int32 {
 
 // GetQtySmOk returns a tuple with the QtySm field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetQtySmOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetQtySmOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -476,12 +476,12 @@ func (o *InventoryResponse) GetQtySmOk() (*int32, bool) {
 }
 
 // SetQtySm sets field value
-func (o *InventoryResponse) SetQtySm(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetQtySm(v int32) {
 	o.QtySm = v
 }
 
 // GetRecVaSum returns the RecVaSum field value
-func (o *InventoryResponse) GetRecVaSum() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetRecVaSum() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -492,7 +492,7 @@ func (o *InventoryResponse) GetRecVaSum() float32 {
 
 // GetRecVaSumOk returns a tuple with the RecVaSum field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetRecVaSumOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetRecVaSumOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -500,12 +500,12 @@ func (o *InventoryResponse) GetRecVaSumOk() (*float32, bool) {
 }
 
 // SetRecVaSum sets field value
-func (o *InventoryResponse) SetRecVaSum(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetRecVaSum(v float32) {
 	o.RecVaSum = v
 }
 
 // GetSType returns the SType field value
-func (o *InventoryResponse) GetSType() string {
+func (o *AppSchemaV1WalletInventoryResponse) GetSType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -516,7 +516,7 @@ func (o *InventoryResponse) GetSType() string {
 
 // GetSTypeOk returns a tuple with the SType field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetSTypeOk() (*string, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetSTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -524,12 +524,12 @@ func (o *InventoryResponse) GetSTypeOk() (*string, bool) {
 }
 
 // SetSType sets field value
-func (o *InventoryResponse) SetSType(v string) {
+func (o *AppSchemaV1WalletInventoryResponse) SetSType(v string) {
 	o.SType = v
 }
 
 // GetStkDats returns the StkDats field value
-func (o *InventoryResponse) GetStkDats() []InventoryDetail {
+func (o *AppSchemaV1WalletInventoryResponse) GetStkDats() []InventoryDetail {
 	if o == nil {
 		var ret []InventoryDetail
 		return ret
@@ -540,7 +540,7 @@ func (o *InventoryResponse) GetStkDats() []InventoryDetail {
 
 // GetStkDatsOk returns a tuple with the StkDats field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetStkDatsOk() ([]InventoryDetail, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetStkDatsOk() ([]InventoryDetail, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -548,12 +548,12 @@ func (o *InventoryResponse) GetStkDatsOk() ([]InventoryDetail, bool) {
 }
 
 // SetStkDats sets field value
-func (o *InventoryResponse) SetStkDats(v []InventoryDetail) {
+func (o *AppSchemaV1WalletInventoryResponse) SetStkDats(v []InventoryDetail) {
 	o.StkDats = v
 }
 
 // GetStkNa returns the StkNa field value
-func (o *InventoryResponse) GetStkNa() string {
+func (o *AppSchemaV1WalletInventoryResponse) GetStkNa() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -564,7 +564,7 @@ func (o *InventoryResponse) GetStkNa() string {
 
 // GetStkNaOk returns a tuple with the StkNa field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetStkNaOk() (*string, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetStkNaOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -572,12 +572,12 @@ func (o *InventoryResponse) GetStkNaOk() (*string, bool) {
 }
 
 // SetStkNa sets field value
-func (o *InventoryResponse) SetStkNa(v string) {
+func (o *AppSchemaV1WalletInventoryResponse) SetStkNa(v string) {
 	o.StkNa = v
 }
 
 // GetStkNo returns the StkNo field value
-func (o *InventoryResponse) GetStkNo() string {
+func (o *AppSchemaV1WalletInventoryResponse) GetStkNo() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -588,7 +588,7 @@ func (o *InventoryResponse) GetStkNo() string {
 
 // GetStkNoOk returns a tuple with the StkNo field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetStkNoOk() (*string, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetStkNoOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -596,12 +596,12 @@ func (o *InventoryResponse) GetStkNoOk() (*string, bool) {
 }
 
 // SetStkNo sets field value
-func (o *InventoryResponse) SetStkNo(v string) {
+func (o *AppSchemaV1WalletInventoryResponse) SetStkNo(v string) {
 	o.StkNo = v
 }
 
 // GetTrade returns the Trade field value if set, zero value otherwise.
-func (o *InventoryResponse) GetTrade() int32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetTrade() int32 {
 	if o == nil || IsNil(o.Trade) {
 		var ret int32
 		return ret
@@ -611,7 +611,7 @@ func (o *InventoryResponse) GetTrade() int32 {
 
 // GetTradeOk returns a tuple with the Trade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetTradeOk() (*int32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetTradeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Trade) {
 		return nil, false
 	}
@@ -619,7 +619,7 @@ func (o *InventoryResponse) GetTradeOk() (*int32, bool) {
 }
 
 // HasTrade returns a boolean if a field has been set.
-func (o *InventoryResponse) HasTrade() bool {
+func (o *AppSchemaV1WalletInventoryResponse) HasTrade() bool {
 	if o != nil && !IsNil(o.Trade) {
 		return true
 	}
@@ -628,12 +628,12 @@ func (o *InventoryResponse) HasTrade() bool {
 }
 
 // SetTrade gets a reference to the given int32 and assigns it to the Trade field.
-func (o *InventoryResponse) SetTrade(v int32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetTrade(v int32) {
 	o.Trade = &v
 }
 
 // GetValueMkt returns the ValueMkt field value
-func (o *InventoryResponse) GetValueMkt() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetValueMkt() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -644,7 +644,7 @@ func (o *InventoryResponse) GetValueMkt() float32 {
 
 // GetValueMktOk returns a tuple with the ValueMkt field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetValueMktOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetValueMktOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -652,12 +652,12 @@ func (o *InventoryResponse) GetValueMktOk() (*float32, bool) {
 }
 
 // SetValueMkt sets field value
-func (o *InventoryResponse) SetValueMkt(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetValueMkt(v float32) {
 	o.ValueMkt = v
 }
 
 // GetValueNow returns the ValueNow field value
-func (o *InventoryResponse) GetValueNow() float32 {
+func (o *AppSchemaV1WalletInventoryResponse) GetValueNow() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -668,7 +668,7 @@ func (o *InventoryResponse) GetValueNow() float32 {
 
 // GetValueNowOk returns a tuple with the ValueNow field value
 // and a boolean to check if the value has been set.
-func (o *InventoryResponse) GetValueNowOk() (*float32, bool) {
+func (o *AppSchemaV1WalletInventoryResponse) GetValueNowOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -676,11 +676,11 @@ func (o *InventoryResponse) GetValueNowOk() (*float32, bool) {
 }
 
 // SetValueNow sets field value
-func (o *InventoryResponse) SetValueNow(v float32) {
+func (o *AppSchemaV1WalletInventoryResponse) SetValueNow(v float32) {
 	o.ValueNow = v
 }
 
-func (o InventoryResponse) MarshalJSON() ([]byte, error) {
+func (o AppSchemaV1WalletInventoryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -688,7 +688,7 @@ func (o InventoryResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o InventoryResponse) ToMap() (map[string]interface{}, error) {
+func (o AppSchemaV1WalletInventoryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ApCode) {
 		toSerialize["ap_code"] = o.ApCode
@@ -721,7 +721,7 @@ func (o InventoryResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *InventoryResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *AppSchemaV1WalletInventoryResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -764,53 +764,53 @@ func (o *InventoryResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varInventoryResponse := _InventoryResponse{}
+	varAppSchemaV1WalletInventoryResponse := _AppSchemaV1WalletInventoryResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInventoryResponse)
+	err = decoder.Decode(&varAppSchemaV1WalletInventoryResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = InventoryResponse(varInventoryResponse)
+	*o = AppSchemaV1WalletInventoryResponse(varAppSchemaV1WalletInventoryResponse)
 
 	return err
 }
 
-type NullableInventoryResponse struct {
-	value *InventoryResponse
+type NullableAppSchemaV1WalletInventoryResponse struct {
+	value *AppSchemaV1WalletInventoryResponse
 	isSet bool
 }
 
-func (v NullableInventoryResponse) Get() *InventoryResponse {
+func (v NullableAppSchemaV1WalletInventoryResponse) Get() *AppSchemaV1WalletInventoryResponse {
 	return v.value
 }
 
-func (v *NullableInventoryResponse) Set(val *InventoryResponse) {
+func (v *NullableAppSchemaV1WalletInventoryResponse) Set(val *AppSchemaV1WalletInventoryResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInventoryResponse) IsSet() bool {
+func (v NullableAppSchemaV1WalletInventoryResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInventoryResponse) Unset() {
+func (v *NullableAppSchemaV1WalletInventoryResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInventoryResponse(val *InventoryResponse) *NullableInventoryResponse {
-	return &NullableInventoryResponse{value: val, isSet: true}
+func NewNullableAppSchemaV1WalletInventoryResponse(val *AppSchemaV1WalletInventoryResponse) *NullableAppSchemaV1WalletInventoryResponse {
+	return &NullableAppSchemaV1WalletInventoryResponse{value: val, isSet: true}
 }
 
-func (v NullableInventoryResponse) MarshalJSON() ([]byte, error) {
+func (v NullableAppSchemaV1WalletInventoryResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInventoryResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableAppSchemaV1WalletInventoryResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteOrderEndpointApiV1OrderOrdNoDelete**](OrderAPI.md#DeleteOrderEndpointApiV1OrderOrdNoDelete) | **Delete** /api/v1/order/{ord_no} | Delete Order Endpoint
 [**GetMarketStatusEndpointApiV1MarketStatusGet**](OrderAPI.md#GetMarketStatusEndpointApiV1MarketStatusGet) | **Get** /api/v1/market_status | Get Market Status Endpoint
 [**GetOrdersEndpointApiV1OrdersGet**](OrderAPI.md#GetOrdersEndpointApiV1OrdersGet) | **Get** /api/v1/orders | Get Orders Endpoint
+[**GetTransactionEndpointApiV1TransactionsGet**](OrderAPI.md#GetTransactionEndpointApiV1TransactionsGet) | **Get** /api/v1/transactions | Get Transaction Endpoint
 
 
 
@@ -246,6 +247,70 @@ Other parameters are passed through a pointer to a apiGetOrdersEndpointApiV1Orde
 ### Return type
 
 [**[]OrderResultResponse**](OrderResultResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetTransactionEndpointApiV1TransactionsGet
+
+> []AppSchemaV1OrderTransactionResponse GetTransactionEndpointApiV1TransactionsGet(ctx).QueryRange(queryRange).Execute()
+
+Get Transaction Endpoint
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/yitech/fugle-go"
+)
+
+func main() {
+	queryRange := "queryRange_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrderAPI.GetTransactionEndpointApiV1TransactionsGet(context.Background()).QueryRange(queryRange).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrderAPI.GetTransactionEndpointApiV1TransactionsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTransactionEndpointApiV1TransactionsGet`: []AppSchemaV1OrderTransactionResponse
+	fmt.Fprintf(os.Stdout, "Response from `OrderAPI.GetTransactionEndpointApiV1TransactionsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetTransactionEndpointApiV1TransactionsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **queryRange** | **string** |  | 
+
+### Return type
+
+[**[]AppSchemaV1OrderTransactionResponse**](AppSchemaV1OrderTransactionResponse.md)
 
 ### Authorization
 

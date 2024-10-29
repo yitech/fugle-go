@@ -72,4 +72,16 @@ func Test_openapi_OrderAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test OrderAPIService GetTransactionEndpointApiV1TransactionsGet", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.OrderAPI.GetTransactionEndpointApiV1TransactionsGet(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

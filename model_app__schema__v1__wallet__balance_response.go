@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the BalanceResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BalanceResponse{}
+// checks if the AppSchemaV1WalletBalanceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AppSchemaV1WalletBalanceResponse{}
 
-// BalanceResponse struct for BalanceResponse
-type BalanceResponse struct {
+// AppSchemaV1WalletBalanceResponse struct for AppSchemaV1WalletBalanceResponse
+type AppSchemaV1WalletBalanceResponse struct {
 	AvailableBalance int32 `json:"available_balance"`
 	ExchangeBalance int32 `json:"exchange_balance"`
 	StockPreSaveAmount int32 `json:"stock_pre_save_amount"`
 }
 
-type _BalanceResponse BalanceResponse
+type _AppSchemaV1WalletBalanceResponse AppSchemaV1WalletBalanceResponse
 
-// NewBalanceResponse instantiates a new BalanceResponse object
+// NewAppSchemaV1WalletBalanceResponse instantiates a new AppSchemaV1WalletBalanceResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBalanceResponse(availableBalance int32, exchangeBalance int32, stockPreSaveAmount int32) *BalanceResponse {
-	this := BalanceResponse{}
+func NewAppSchemaV1WalletBalanceResponse(availableBalance int32, exchangeBalance int32, stockPreSaveAmount int32) *AppSchemaV1WalletBalanceResponse {
+	this := AppSchemaV1WalletBalanceResponse{}
 	this.AvailableBalance = availableBalance
 	this.ExchangeBalance = exchangeBalance
 	this.StockPreSaveAmount = stockPreSaveAmount
 	return &this
 }
 
-// NewBalanceResponseWithDefaults instantiates a new BalanceResponse object
+// NewAppSchemaV1WalletBalanceResponseWithDefaults instantiates a new AppSchemaV1WalletBalanceResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBalanceResponseWithDefaults() *BalanceResponse {
-	this := BalanceResponse{}
+func NewAppSchemaV1WalletBalanceResponseWithDefaults() *AppSchemaV1WalletBalanceResponse {
+	this := AppSchemaV1WalletBalanceResponse{}
 	return &this
 }
 
 // GetAvailableBalance returns the AvailableBalance field value
-func (o *BalanceResponse) GetAvailableBalance() int32 {
+func (o *AppSchemaV1WalletBalanceResponse) GetAvailableBalance() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -60,7 +60,7 @@ func (o *BalanceResponse) GetAvailableBalance() int32 {
 
 // GetAvailableBalanceOk returns a tuple with the AvailableBalance field value
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetAvailableBalanceOk() (*int32, bool) {
+func (o *AppSchemaV1WalletBalanceResponse) GetAvailableBalanceOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *BalanceResponse) GetAvailableBalanceOk() (*int32, bool) {
 }
 
 // SetAvailableBalance sets field value
-func (o *BalanceResponse) SetAvailableBalance(v int32) {
+func (o *AppSchemaV1WalletBalanceResponse) SetAvailableBalance(v int32) {
 	o.AvailableBalance = v
 }
 
 // GetExchangeBalance returns the ExchangeBalance field value
-func (o *BalanceResponse) GetExchangeBalance() int32 {
+func (o *AppSchemaV1WalletBalanceResponse) GetExchangeBalance() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -84,7 +84,7 @@ func (o *BalanceResponse) GetExchangeBalance() int32 {
 
 // GetExchangeBalanceOk returns a tuple with the ExchangeBalance field value
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetExchangeBalanceOk() (*int32, bool) {
+func (o *AppSchemaV1WalletBalanceResponse) GetExchangeBalanceOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,12 +92,12 @@ func (o *BalanceResponse) GetExchangeBalanceOk() (*int32, bool) {
 }
 
 // SetExchangeBalance sets field value
-func (o *BalanceResponse) SetExchangeBalance(v int32) {
+func (o *AppSchemaV1WalletBalanceResponse) SetExchangeBalance(v int32) {
 	o.ExchangeBalance = v
 }
 
 // GetStockPreSaveAmount returns the StockPreSaveAmount field value
-func (o *BalanceResponse) GetStockPreSaveAmount() int32 {
+func (o *AppSchemaV1WalletBalanceResponse) GetStockPreSaveAmount() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -108,7 +108,7 @@ func (o *BalanceResponse) GetStockPreSaveAmount() int32 {
 
 // GetStockPreSaveAmountOk returns a tuple with the StockPreSaveAmount field value
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetStockPreSaveAmountOk() (*int32, bool) {
+func (o *AppSchemaV1WalletBalanceResponse) GetStockPreSaveAmountOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,11 +116,11 @@ func (o *BalanceResponse) GetStockPreSaveAmountOk() (*int32, bool) {
 }
 
 // SetStockPreSaveAmount sets field value
-func (o *BalanceResponse) SetStockPreSaveAmount(v int32) {
+func (o *AppSchemaV1WalletBalanceResponse) SetStockPreSaveAmount(v int32) {
 	o.StockPreSaveAmount = v
 }
 
-func (o BalanceResponse) MarshalJSON() ([]byte, error) {
+func (o AppSchemaV1WalletBalanceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -128,7 +128,7 @@ func (o BalanceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BalanceResponse) ToMap() (map[string]interface{}, error) {
+func (o AppSchemaV1WalletBalanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["available_balance"] = o.AvailableBalance
 	toSerialize["exchange_balance"] = o.ExchangeBalance
@@ -136,7 +136,7 @@ func (o BalanceResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BalanceResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *AppSchemaV1WalletBalanceResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -160,53 +160,53 @@ func (o *BalanceResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varBalanceResponse := _BalanceResponse{}
+	varAppSchemaV1WalletBalanceResponse := _AppSchemaV1WalletBalanceResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBalanceResponse)
+	err = decoder.Decode(&varAppSchemaV1WalletBalanceResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BalanceResponse(varBalanceResponse)
+	*o = AppSchemaV1WalletBalanceResponse(varAppSchemaV1WalletBalanceResponse)
 
 	return err
 }
 
-type NullableBalanceResponse struct {
-	value *BalanceResponse
+type NullableAppSchemaV1WalletBalanceResponse struct {
+	value *AppSchemaV1WalletBalanceResponse
 	isSet bool
 }
 
-func (v NullableBalanceResponse) Get() *BalanceResponse {
+func (v NullableAppSchemaV1WalletBalanceResponse) Get() *AppSchemaV1WalletBalanceResponse {
 	return v.value
 }
 
-func (v *NullableBalanceResponse) Set(val *BalanceResponse) {
+func (v *NullableAppSchemaV1WalletBalanceResponse) Set(val *AppSchemaV1WalletBalanceResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBalanceResponse) IsSet() bool {
+func (v NullableAppSchemaV1WalletBalanceResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBalanceResponse) Unset() {
+func (v *NullableAppSchemaV1WalletBalanceResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBalanceResponse(val *BalanceResponse) *NullableBalanceResponse {
-	return &NullableBalanceResponse{value: val, isSet: true}
+func NewNullableAppSchemaV1WalletBalanceResponse(val *AppSchemaV1WalletBalanceResponse) *NullableAppSchemaV1WalletBalanceResponse {
+	return &NullableAppSchemaV1WalletBalanceResponse{value: val, isSet: true}
 }
 
-func (v NullableBalanceResponse) MarshalJSON() ([]byte, error) {
+func (v NullableAppSchemaV1WalletBalanceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBalanceResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableAppSchemaV1WalletBalanceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

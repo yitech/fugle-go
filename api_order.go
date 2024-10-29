@@ -445,3 +445,120 @@ func (a *OrderAPIService) GetOrdersEndpointApiV1OrdersGetExecute(r ApiGetOrdersE
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
+type ApiGetTransactionEndpointApiV1TransactionsGetRequest struct {
+	ctx context.Context
+	ApiService *OrderAPIService
+	queryRange *string
+}
+
+func (r ApiGetTransactionEndpointApiV1TransactionsGetRequest) QueryRange(queryRange string) ApiGetTransactionEndpointApiV1TransactionsGetRequest {
+	r.queryRange = &queryRange
+	return r
+}
+
+func (r ApiGetTransactionEndpointApiV1TransactionsGetRequest) Execute() ([]AppSchemaV1OrderTransactionResponse, *http.Response, error) {
+	return r.ApiService.GetTransactionEndpointApiV1TransactionsGetExecute(r)
+}
+
+/*
+GetTransactionEndpointApiV1TransactionsGet Get Transaction Endpoint
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTransactionEndpointApiV1TransactionsGetRequest
+*/
+func (a *OrderAPIService) GetTransactionEndpointApiV1TransactionsGet(ctx context.Context) ApiGetTransactionEndpointApiV1TransactionsGetRequest {
+	return ApiGetTransactionEndpointApiV1TransactionsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []AppSchemaV1OrderTransactionResponse
+func (a *OrderAPIService) GetTransactionEndpointApiV1TransactionsGetExecute(r ApiGetTransactionEndpointApiV1TransactionsGetRequest) ([]AppSchemaV1OrderTransactionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []AppSchemaV1OrderTransactionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetTransactionEndpointApiV1TransactionsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/transactions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.queryRange == nil {
+		return localVarReturnValue, nil, reportError("queryRange is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "query_range", r.queryRange, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}

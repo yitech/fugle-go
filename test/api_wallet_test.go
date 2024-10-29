@@ -34,11 +34,35 @@ func Test_openapi_WalletAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test WalletAPIService GetBalanceEndpointApiV2BalanceGet", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.WalletAPI.GetBalanceEndpointApiV2BalanceGet(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WalletAPIService GetInventoriesEndpointApiV1InventoriesGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.WalletAPI.GetInventoriesEndpointApiV1InventoriesGet(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test WalletAPIService GetInventoriesEndpointApiV2InventoriesGet", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.WalletAPI.GetInventoriesEndpointApiV2InventoriesGet(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -55,6 +55,8 @@ type APIClient struct {
 
 	SystemAPI *SystemAPIService
 
+	TradeAPI *TradeAPIService
+
 	WalletAPI *WalletAPIService
 }
 
@@ -77,6 +79,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MarketAPI = (*MarketAPIService)(&c.common)
 	c.OrderAPI = (*OrderAPIService)(&c.common)
 	c.SystemAPI = (*SystemAPIService)(&c.common)
+	c.TradeAPI = (*TradeAPIService)(&c.common)
 	c.WalletAPI = (*WalletAPIService)(&c.common)
 
 	return c

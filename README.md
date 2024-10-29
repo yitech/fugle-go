@@ -84,9 +84,13 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**DeleteOrderEndpointApiV1OrderOrdNoDelete**](docs/OrderAPI.md#deleteorderendpointapiv1orderordnodelete) | **Delete** /api/v1/order/{ord_no} | Delete Order Endpoint
 *OrderAPI* | [**GetMarketStatusEndpointApiV1MarketStatusGet**](docs/OrderAPI.md#getmarketstatusendpointapiv1marketstatusget) | **Get** /api/v1/market_status | Get Market Status Endpoint
 *OrderAPI* | [**GetOrdersEndpointApiV1OrdersGet**](docs/OrderAPI.md#getordersendpointapiv1ordersget) | **Get** /api/v1/orders | Get Orders Endpoint
+*OrderAPI* | [**GetTransactionEndpointApiV1TransactionsGet**](docs/OrderAPI.md#gettransactionendpointapiv1transactionsget) | **Get** /api/v1/transactions | Get Transaction Endpoint
 *SystemAPI* | [**PingApiV1PingGet**](docs/SystemAPI.md#pingapiv1pingget) | **Get** /api/v1/ping | Ping
+*TradeAPI* | [**GetTransactionEndpointApiV2TransactionsGet**](docs/TradeAPI.md#gettransactionendpointapiv2transactionsget) | **Get** /api/v2/transactions | Get Transaction Endpoint
 *WalletAPI* | [**GetBalanceEndpointApiV1BalanceGet**](docs/WalletAPI.md#getbalanceendpointapiv1balanceget) | **Get** /api/v1/balance | Get Balance Endpoint
+*WalletAPI* | [**GetBalanceEndpointApiV2BalanceGet**](docs/WalletAPI.md#getbalanceendpointapiv2balanceget) | **Get** /api/v2/balance | Get Balance Endpoint
 *WalletAPI* | [**GetInventoriesEndpointApiV1InventoriesGet**](docs/WalletAPI.md#getinventoriesendpointapiv1inventoriesget) | **Get** /api/v1/inventories | Get Inventories Endpoint
+*WalletAPI* | [**GetInventoriesEndpointApiV2InventoriesGet**](docs/WalletAPI.md#getinventoriesendpointapiv2inventoriesget) | **Get** /api/v2/inventories | Get Inventories Endpoint
 *WalletAPI* | [**GetSettlementsEndpointApiV1SettlementsGet**](docs/WalletAPI.md#getsettlementsendpointapiv1settlementsget) | **Get** /api/v1/settlements | Get Settlements Endpoint
 
 
@@ -94,19 +98,24 @@ Class | Method | HTTP request | Description
 
  - [APCode](docs/APCode.md)
  - [Action](docs/Action.md)
+ - [AppSchemaV1OrderTransactionResponse](docs/AppSchemaV1OrderTransactionResponse.md)
+ - [AppSchemaV1WalletBalanceResponse](docs/AppSchemaV1WalletBalanceResponse.md)
+ - [AppSchemaV1WalletInventoryResponse](docs/AppSchemaV1WalletInventoryResponse.md)
+ - [AppSchemaV2TradeTransactionResponse](docs/AppSchemaV2TradeTransactionResponse.md)
+ - [AppSchemaV2WalletBalanceResponse](docs/AppSchemaV2WalletBalanceResponse.md)
+ - [AppSchemaV2WalletInventoryResponse](docs/AppSchemaV2WalletInventoryResponse.md)
  - [BSFlag](docs/BSFlag.md)
- - [BalanceResponse](docs/BalanceResponse.md)
  - [BidAsk](docs/BidAsk.md)
  - [CancelResponse](docs/CancelResponse.md)
  - [CreateOrder](docs/CreateOrder.md)
  - [HTTPValidationError](docs/HTTPValidationError.md)
  - [InventoryDetail](docs/InventoryDetail.md)
- - [InventoryResponse](docs/InventoryResponse.md)
  - [KLine](docs/KLine.md)
  - [KLinesResponse](docs/KLinesResponse.md)
  - [LastTrade](docs/LastTrade.md)
  - [LastTrial](docs/LastTrial.md)
  - [MarketStatusResponse](docs/MarketStatusResponse.md)
+ - [MatDetail](docs/MatDetail.md)
  - [OrderResponse](docs/OrderResponse.md)
  - [OrderResultResponse](docs/OrderResultResponse.md)
  - [PriceFlag](docs/PriceFlag.md)
